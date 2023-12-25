@@ -1,7 +1,8 @@
 import random
 import logging
+from datetime import datetime
 
-logging.basicConfig(filename='Бочонки.log', level=logging.INFO)
+logging.basicConfig(filename='Бочонки.log', level=logging.DEBUG)
 
 def create_barrel_bag(N):
     return list(range(1, N+1))
@@ -31,7 +32,7 @@ def s_polsovatel():
 
 def main():
     N = s_polsovatel()
-    logging.info(f'Запуск программы для N = {N}')
+    logging.info(f'Запуск программы для N = {N},in {datetime.now()}')
     barrel_bag = create_barrel_bag(N)
     random.shuffle(barrel_bag)
     print("Вытаскиваем бочонки из мешка!")
@@ -40,6 +41,8 @@ def main():
         pulled_barrel = pull_barrel(barrel_bag)
         if pulled_barrel:
             print(f"Вы вытянули бочонок с номером: {pulled_barrel}")
+            logging.info(f"Вы вытянули бочонок с номером: {pulled_barrel} in {datetime.now()}")
+
 
 if __name__ == "__main__":
     main()
